@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadence OS - A Personal Operating System for Leaders</title>
+    <meta name="description" content="Turn your calendar into a decision system. Weekly intention, daily prep, and meeting closure—so meetings compound instead of evaporating.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cadence OS - A Personal Operating System for Leaders">
+    <meta property="og:description" content="Turn your calendar into a decision system. Weekly intention, daily prep, and meeting closure—so meetings compound instead of evaporating.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cadenceos.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cadence OS - A Personal Operating System for Leaders">
+    <meta name="twitter:description" content="Turn your calendar into a decision system. Weekly intention, daily prep, and meeting closure.">
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SVG Symbol Definitions (hidden, reusable icons) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-logo" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M16 8V16L22 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </symbol>
+        <symbol id="icon-spinner" viewBox="0 0 20 20">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="40" stroke-dashoffset="10"/>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" fill="none"/>
+        </symbol>
+        <symbol id="icon-minus-circle" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M8 12h8" stroke="currentColor" stroke-width="2" fill="none"/>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/>
+        </symbol>
+    </svg>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <!-- Animated Background -->
+        <div class="hero-bg-animation">
+            <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Gradients for waves -->
+                    <linearGradient id="heroWaveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#1e40af" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="heroWaveGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="heroWaveGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="#1e40af" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+                    </linearGradient>
+                    <!-- Glow filter -->
+                    <filter id="heroGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Grid lines (subtle) -->
+                <g class="hero-grid" opacity="0.08">
+                    <line x1="0" y1="200" x2="1440" y2="200" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="0" y1="400" x2="1440" y2="400" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="0" y1="600" x2="1440" y2="600" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="0" y1="800" x2="1440" y2="800" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="288" y1="0" x2="288" y2="900" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="576" y1="0" x2="576" y2="900" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="864" y1="0" x2="864" y2="900" stroke="#60a5fa" stroke-width="1"/>
+                    <line x1="1152" y1="0" x2="1152" y2="900" stroke="#60a5fa" stroke-width="1"/>
+                </g>
+
+                <!-- Primary wave - slow, large amplitude (weekly rhythm) -->
+                <path class="hero-wave hero-wave-1"
+                      d="M -100 700
+                         Q 200 650, 400 600 Q 600 550, 800 500
+                         Q 1000 450, 1200 400 Q 1400 350, 1600 300"
+                      fill="none" stroke="url(#heroWaveGradient1)" stroke-width="2" stroke-linecap="round"
+                      filter="url(#heroGlow)">
+                    <animate attributeName="d"
+                             values="M -100 700 Q 200 650, 400 600 Q 600 550, 800 500 Q 1000 450, 1200 400 Q 1400 350, 1600 300;
+                                     M -100 720 Q 200 660, 400 620 Q 600 540, 800 490 Q 1000 440, 1200 390 Q 1400 340, 1600 280;
+                                     M -100 700 Q 200 650, 400 600 Q 600 550, 800 500 Q 1000 450, 1200 400 Q 1400 350, 1600 300"
+                             dur="8s" repeatCount="indefinite"/>
+                </path>
+
+                <!-- Secondary wave - medium frequency (daily rhythm) -->
+                <path class="hero-wave hero-wave-2"
+                      d="M -50 750
+                         Q 100 720, 200 690 Q 300 720, 400 660
+                         Q 500 620, 600 580 Q 700 620, 800 550
+                         Q 900 500, 1000 460 Q 1100 500, 1200 430
+                         Q 1300 380, 1400 340 Q 1500 380, 1600 300"
+                      fill="none" stroke="url(#heroWaveGradient2)" stroke-width="1.5" stroke-linecap="round"
+                      opacity="0.8">
+                    <animate attributeName="d"
+                             values="M -50 750 Q 100 720, 200 690 Q 300 720, 400 660 Q 500 620, 600 580 Q 700 620, 800 550 Q 900 500, 1000 460 Q 1100 500, 1200 430 Q 1300 380, 1400 340 Q 1500 380, 1600 300;
+                                     M -50 760 Q 100 730, 200 680 Q 300 710, 400 650 Q 500 610, 600 590 Q 700 610, 800 540 Q 900 490, 1000 470 Q 1100 490, 1200 420 Q 1300 370, 1400 350 Q 1500 370, 1600 290;
+                                     M -50 750 Q 100 720, 200 690 Q 300 720, 400 660 Q 500 620, 600 580 Q 700 620, 800 550 Q 900 500, 1000 460 Q 1100 500, 1200 430 Q 1300 380, 1400 340 Q 1500 380, 1600 300"
+                             dur="6s" repeatCount="indefinite"/>
+                </path>
+
+                <!-- Tertiary wave - high frequency (meeting rhythm) -->
+                <path class="hero-wave hero-wave-3"
+                      d="M 0 780
+                         Q 40 770, 80 760 Q 120 770, 160 750 Q 200 740, 240 730 Q 280 740, 320 720
+                         Q 360 710, 400 700 Q 440 710, 480 680 Q 520 660, 560 650 Q 600 660, 640 630
+                         Q 680 610, 720 600 Q 760 610, 800 580 Q 840 560, 880 550 Q 920 560, 960 530
+                         Q 1000 510, 1040 500 Q 1080 510, 1120 480 Q 1160 460, 1200 450 Q 1240 460, 1280 430
+                         Q 1320 410, 1360 400 Q 1400 410, 1440 380 Q 1480 360, 1540 340"
+                      fill="none" stroke="url(#heroWaveGradient3)" stroke-width="1" stroke-linecap="round"
+                      opacity="0.6">
+                    <animate attributeName="d"
+                             values="M 0 780 Q 40 770, 80 760 Q 120 770, 160 750 Q 200 740, 240 730 Q 280 740, 320 720 Q 360 710, 400 700 Q 440 710, 480 680 Q 520 660, 560 650 Q 600 660, 640 630 Q 680 610, 720 600 Q 760 610, 800 580 Q 840 560, 880 550 Q 920 560, 960 530 Q 1000 510, 1040 500 Q 1080 510, 1120 480 Q 1160 460, 1200 450 Q 1240 460, 1280 430 Q 1320 410, 1360 400 Q 1400 410, 1440 380 Q 1480 360, 1540 340;
+                                     M 0 785 Q 40 775, 80 755 Q 120 765, 160 745 Q 200 735, 240 735 Q 280 745, 320 715 Q 360 705, 400 705 Q 440 715, 480 675 Q 520 655, 560 655 Q 600 665, 640 625 Q 680 605, 720 605 Q 760 615, 800 575 Q 840 555, 880 555 Q 920 565, 960 525 Q 1000 505, 1040 505 Q 1080 515, 1120 475 Q 1160 455, 1200 455 Q 1240 465, 1280 425 Q 1320 405, 1360 405 Q 1400 415, 1440 375 Q 1480 355, 1540 335;
+                                     M 0 780 Q 40 770, 80 760 Q 120 770, 160 750 Q 200 740, 240 730 Q 280 740, 320 720 Q 360 710, 400 700 Q 440 710, 480 680 Q 520 660, 560 650 Q 600 660, 640 630 Q 680 610, 720 600 Q 760 610, 800 580 Q 840 560, 880 550 Q 920 560, 960 530 Q 1000 510, 1040 500 Q 1080 510, 1120 480 Q 1160 460, 1200 450 Q 1240 460, 1280 430 Q 1320 410, 1360 400 Q 1400 410, 1440 380 Q 1480 360, 1540 340"
+                             dur="4s" repeatCount="indefinite"/>
+                </path>
+
+                <!-- Glowing dots traveling along the primary wave -->
+                <circle r="4" fill="#3b82f6" filter="url(#heroGlow)" opacity="0.9">
+                    <animateMotion dur="12s" repeatCount="indefinite"
+                        path="M -100 700 Q 200 650, 400 600 Q 600 550, 800 500 Q 1000 450, 1200 400 Q 1400 350, 1600 300"/>
+                </circle>
+                <circle r="3" fill="#0ea5e9" filter="url(#heroGlow)" opacity="0.7">
+                    <animateMotion dur="12s" repeatCount="indefinite" begin="-4s"
+                        path="M -100 700 Q 200 650, 400 600 Q 600 550, 800 500 Q 1000 450, 1200 400 Q 1400 350, 1600 300"/>
+                </circle>
+                <circle r="3" fill="#06b6d4" filter="url(#heroGlow)" opacity="0.7">
+                    <animateMotion dur="12s" repeatCount="indefinite" begin="-8s"
+                        path="M -100 700 Q 200 650, 400 600 Q 600 550, 800 500 Q 1000 450, 1200 400 Q 1400 350, 1600 300"/>
+                </circle>
+
+                <!-- Floating particles -->
+                <circle class="hero-particle" cx="200" cy="300" r="2" fill="#3b82f6" opacity="0.4">
+                    <animate attributeName="cy" values="300;280;300" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="hero-particle" cx="600" cy="200" r="1.5" fill="#0ea5e9" opacity="0.3">
+                    <animate attributeName="cy" values="200;180;200" dur="5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="hero-particle" cx="1000" cy="350" r="2" fill="#06b6d4" opacity="0.4">
+                    <animate attributeName="cy" values="350;330;350" dur="3.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="hero-particle" cx="1200" cy="150" r="1.5" fill="#3b82f6" opacity="0.3">
+                    <animate attributeName="cy" values="150;135;150" dur="4.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="4.5s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+
+        <nav class="nav">
+            <div class="nav-brand">
+                <svg class="logo" width="32" height="32"><use href="#icon-logo"/></svg>
+                <span class="nav-brand-text">Cadence OS</span>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="hero-title">A personal operating system for leaders whose calendar is too expensive to be reactive</h1>
+            <p class="hero-subtitle">Turn meetings into clear priorities, prepared conversations, and closed loops—without relying on heroic discipline.</p>
+
+            <form id="waitlist-form-hero" class="waitlist-form">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="you@company.com" required class="input-email">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Join Waitlist</span>
+                        <span class="btn-loading" hidden>
+                            <svg class="spinner" width="20" height="20"><use href="#icon-spinner"/></svg>
+                        </span>
+                    </button>
+                </div>
+                <p class="form-note">Early access for founders and executives. No spam.</p>
+            </form>
+        </div>
+
+    </header>
+
+    <!-- Problem Section -->
+    <section class="section section-problem">
+        <div class="container">
+            <blockquote class="problem-quote">
+                "I was busy all week… but what actually moved?"
+            </blockquote>
+            <p class="problem-text">
+                Executives don't struggle because they lack tools. They struggle because meetings are ephemeral, decisions leak, follow-ups slip, and weeks blur together. The cost isn't time—it's <strong>decision quality</strong>, <strong>relationship depth</strong>, and <strong>strategic momentum</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section section-benefits">
+        <div class="container">
+            <h2 class="section-title">What changes</h2>
+            <p class="section-subtitle">Same calendar. Different operating system.</p>
+
+            <div class="before-after-container">
+                <!-- BEFORE Column -->
+                <div class="comparison-column comparison-before">
+                    <div class="comparison-header">
+                        <span class="comparison-label">Without Cadence</span>
+                        <span class="comparison-icon">
+                            <svg width="20" height="20"><use href="#icon-minus-circle"/></svg>
+                        </span>
+                    </div>
+                    <ul class="comparison-list">
+                        <li>
+                            <span class="comparison-time">Monday</span>
+                            <span class="comparison-desc">Week starts without clear priorities</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Each morning</span>
+                            <span class="comparison-desc">Scramble to remember what's happening today</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Before meetings</span>
+                            <span class="comparison-desc">Walk in cold, no context on attendees or history</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">After meetings</span>
+                            <span class="comparison-desc">Notes scattered or forgotten, follow-ups slip</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Friday</span>
+                            <span class="comparison-desc">"What did I actually accomplish this week?"</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Over time</span>
+                            <span class="comparison-desc">Conversations forgotten, patterns invisible</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Arrow divider -->
+                <div class="comparison-arrow">
+                    <svg width="40" height="40"><use href="#icon-arrow-right"/></svg>
+                </div>
+
+                <!-- AFTER Column -->
+                <div class="comparison-column comparison-after">
+                    <div class="comparison-header">
+                        <span class="comparison-label">With Cadence</span>
+                        <span class="comparison-icon">
+                            <svg width="20" height="20"><use href="#icon-check"/></svg>
+                        </span>
+                    </div>
+                    <ul class="comparison-list">
+                        <li>
+                            <span class="comparison-time">Monday</span>
+                            <span class="comparison-desc"><strong>Weekly Planning:</strong> 5 priorities set, week designed</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Each morning</span>
+                            <span class="comparison-desc"><strong>Daily Prep:</strong> Today's focus aligned to weekly goals</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Before meetings</span>
+                            <span class="comparison-desc"><strong>Meeting Brief:</strong> Context, history, and goals ready</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">After meetings</span>
+                            <span class="comparison-desc"><strong>Meeting Close:</strong> Notes captured, next steps tracked</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Friday</span>
+                            <span class="comparison-desc"><strong>Weekly Recap:</strong> Progress visible, wins documented</span>
+                        </li>
+                        <li>
+                            <span class="comparison-time">Over time</span>
+                            <span class="comparison-desc"><strong>Compounding:</strong> Patterns emerge, relationships deepen</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who It's For Section -->
+    <section class="section section-audience">
+        <div class="container">
+            <h2 class="section-title">Built for leaders with meeting-heavy calendars</h2>
+
+            <div class="audience-content">
+                <div class="audience-list">
+                    <div class="audience-item">
+                        <span class="audience-role">CEOs & Founders</span>
+                    </div>
+                    <div class="audience-item">
+                        <span class="audience-role">VPs & Executives</span>
+                    </div>
+                    <div class="audience-item">
+                        <span class="audience-role">Chiefs of Staff</span>
+                    </div>
+                    <div class="audience-item">
+                        <span class="audience-role">Directors</span>
+                    </div>
+                </div>
+
+                <div class="audience-criteria">
+                    <p class="criteria-text">If your work is mostly <strong>conversations and decisions</strong>, Cadence OS helps those conversations compound.</p>
+                    <div class="criteria-badge">
+                        <span class="badge-number">15-30+</span>
+                        <span class="badge-label">meetings per week</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section - The Cadence -->
+    <section class="section section-how">
+        <div class="container">
+            <h2 class="section-title">The Cadence</h2>
+            <p class="section-subtitle">Strategy cascades down. Insights bubble up. Three frequencies in harmony.</p>
+
+            <!-- Wave Frequency Visualization -->
+            <div class="cadence-visualization">
+                <!-- Intro Animation: Long-term progress wave that decomposes -->
+                <div class="cadence-intro" id="cadence-intro">
+                    <svg class="intro-svg" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#4f46e5"/>
+                                <stop offset="50%" stop-color="#8b5cf6"/>
+                                <stop offset="100%" stop-color="#7c3aed"/>
+                            </linearGradient>
+                            <filter id="introGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <!-- Clip path for the "zoom window" -->
+                            <clipPath id="zoomClip">
+                                <rect class="zoom-rect" x="0" y="0" width="1000" height="400"/>
+                            </clipPath>
+                        </defs>
+
+                        <!-- Background with subtle grid -->
+                        <rect x="0" y="0" width="1000" height="400" fill="#fafafa"/>
+
+                        <!-- Axis labels -->
+                        <text x="50" y="380" fill="#9ca3af" font-size="12" class="intro-label">NOW</text>
+                        <text x="920" y="380" fill="#9ca3af" font-size="12" class="intro-label">GOALS</text>
+                        <text x="30" y="200" fill="#9ca3af" font-size="11" transform="rotate(-90, 30, 200)" class="intro-label">PROGRESS</text>
+
+                        <!-- The long-term progress line: upward trajectory made of harmonic waves -->
+                        <g class="progress-wave-group">
+                            <!-- Shadow/glow layer -->
+                            <path class="progress-wave-shadow"
+                                  d="M 50 350
+                                     Q 100 340, 150 330 Q 200 335, 250 320
+                                     Q 300 310, 350 295 Q 400 300, 450 280
+                                     Q 500 265, 550 250 Q 600 260, 650 235
+                                     Q 700 220, 750 200 Q 800 210, 850 180
+                                     Q 900 160, 950 140"
+                                  fill="none" stroke="url(#progressGradient)" stroke-width="12" stroke-linecap="round" opacity="0.2" filter="url(#introGlow)"/>
+
+                            <!-- Main progress line with harmonic oscillations -->
+                            <path class="progress-wave-line"
+                                  d="M 50 350
+                                     Q 100 340, 150 330 Q 200 335, 250 320
+                                     Q 300 310, 350 295 Q 400 300, 450 280
+                                     Q 500 265, 550 250 Q 600 260, 650 235
+                                     Q 700 220, 750 200 Q 800 210, 850 180
+                                     Q 900 160, 950 140"
+                                  fill="none" stroke="url(#progressGradient)" stroke-width="4" stroke-linecap="round"
+                                  stroke-dasharray="1200" stroke-dashoffset="1200"/>
+
+                            <!-- Traveling dot on the progress line -->
+                            <circle class="progress-dot" r="8" fill="#4f46e5" filter="url(#introGlow)" opacity="0">
+                                <animateMotion dur="2s" begin="0.5s" fill="freeze"
+                                    path="M 50 350 Q 100 340, 150 330 Q 200 335, 250 320 Q 300 310, 350 295 Q 400 300, 450 280 Q 500 265, 550 250 Q 600 260, 650 235 Q 700 220, 750 200 Q 800 210, 850 180 Q 900 160, 950 140"/>
+                            </circle>
+                        </g>
+
+                        <!-- "Zoom" indicator box that highlights one cycle -->
+                        <rect class="zoom-indicator" x="350" y="230" width="200" height="120" rx="8"
+                              fill="none" stroke="#4f46e5" stroke-width="2" stroke-dasharray="8 4" opacity="0"/>
+
+                        <!-- Label for the zoom area -->
+                        <text class="zoom-label" x="450" y="220" text-anchor="middle" fill="#4f46e5" font-size="13" font-weight="600" opacity="0">
+                            ONE WEEK
+                        </text>
+
+                        <!-- Arrow pointing to zoom -->
+                        <path class="zoom-arrow" d="M 450 360 L 450 390 L 500 375 Z" fill="#4f46e5" opacity="0"/>
+
+                        <!-- Message -->
+                        <text class="intro-message" x="500" y="50" text-anchor="middle" fill="#374151" font-size="18" font-weight="600" opacity="0">
+                            Long-term goals are achieved through consistent rhythms
+                        </text>
+                        <text class="intro-submessage" x="500" y="75" text-anchor="middle" fill="#6b7280" font-size="14" opacity="0">
+                            Let's zoom into one week...
+                        </text>
+                    </svg>
+                </div>
+
+                <!-- Main SVG Wave Visualization -->
+                <svg class="cadence-svg" viewBox="0 0 1000 570" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gradients -->
+                        <linearGradient id="weeklyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#4f46e5"/>
+                            <stop offset="100%" stop-color="#7c3aed"/>
+                        </linearGradient>
+                        <linearGradient id="dailyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#a78bfa"/>
+                        </linearGradient>
+                        <linearGradient id="meetingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#c4b5fd"/>
+                            <stop offset="100%" stop-color="#ddd6fe"/>
+                        </linearGradient>
+                        <linearGradient id="flowDownGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#4f46e5"/>
+                            <stop offset="50%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#c4b5fd"/>
+                        </linearGradient>
+                        <linearGradient id="flowUpGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#c4b5fd"/>
+                            <stop offset="50%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#4f46e5"/>
+                        </linearGradient>
+
+                        <!-- Glow filter -->
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+
+                        <!-- Wave paths (1 cycle for weekly, 5 for daily, 25 for meetings) -->
+                        <!-- Weekly: 1 sine wave across width -->
+                        <path id="wave-weekly-path" d="M 150 100
+                            Q 285 40, 420 100
+                            Q 555 160, 690 100
+                            Q 825 40, 850 100" fill="none"/>
+
+                        <!-- Daily: 5 sine waves -->
+                        <path id="wave-daily-path" d="M 150 260
+                            Q 185 220, 220 260 Q 255 300, 290 260
+                            Q 325 220, 360 260 Q 395 300, 430 260
+                            Q 465 220, 500 260 Q 535 300, 570 260
+                            Q 605 220, 640 260 Q 675 300, 710 260
+                            Q 745 220, 780 260 Q 815 300, 850 260" fill="none"/>
+
+                        <!-- Meeting: ~20 small sine waves -->
+                        <path id="wave-meeting-path" d="M 150 420
+                            Q 162 405, 174 420 Q 186 435, 198 420
+                            Q 210 405, 222 420 Q 234 435, 246 420
+                            Q 258 405, 270 420 Q 282 435, 294 420
+                            Q 306 405, 318 420 Q 330 435, 342 420
+                            Q 354 405, 366 420 Q 378 435, 390 420
+                            Q 402 405, 414 420 Q 426 435, 438 420
+                            Q 450 405, 462 420 Q 474 435, 486 420
+                            Q 498 405, 510 420 Q 522 435, 534 420
+                            Q 546 405, 558 420 Q 570 435, 582 420
+                            Q 594 405, 606 420 Q 618 435, 630 420
+                            Q 642 405, 654 420 Q 666 435, 678 420
+                            Q 690 405, 702 420 Q 714 435, 726 420
+                            Q 738 405, 750 420 Q 762 435, 774 420
+                            Q 786 405, 798 420 Q 810 435, 822 420
+                            Q 834 405, 850 420" fill="none"/>
+                    </defs>
+
+                    <!-- Background -->
+                    <rect x="130" y="50" width="750" height="430" fill="#f8f9fa" rx="16" opacity="0.5"/>
+
+                    <!-- Vertical day separators (5 days) -->
+                    <g class="day-separators" opacity="0.12">
+                        <line x1="270" y1="60" x2="270" y2="470" stroke="#4f46e5" stroke-width="1" stroke-dasharray="4 4"/>
+                        <line x1="410" y1="60" x2="410" y2="470" stroke="#4f46e5" stroke-width="1" stroke-dasharray="4 4"/>
+                        <line x1="550" y1="60" x2="550" y2="470" stroke="#4f46e5" stroke-width="1" stroke-dasharray="4 4"/>
+                        <line x1="690" y1="60" x2="690" y2="470" stroke="#4f46e5" stroke-width="1" stroke-dasharray="4 4"/>
+                    </g>
+
+                    <!-- WEEKLY WAVE ROW -->
+                    <g class="wave-row wave-weekly">
+                        <!-- Label -->
+                        <g class="wave-label">
+                            <rect x="20" y="72" width="100" height="56" rx="10" fill="#4f46e5" opacity="0.1"/>
+                            <text x="70" y="96" text-anchor="middle" fill="#4f46e5" font-size="16" font-weight="700">WEEK</text>
+                            <text x="70" y="118" text-anchor="middle" fill="#4f46e5" font-size="13" opacity="0.7">×1</text>
+                        </g>
+                        <!-- Wave line - realistic week: start low, peak mid-week, end low -->
+                        <path d="M 150 140 Q 250 140, 325 100 Q 425 50, 500 50 Q 575 50, 675 100 Q 750 140, 850 140"
+                              fill="none" stroke="url(#weeklyGradient)" stroke-width="5" stroke-linecap="round"
+                              class="wave-line wave-weekly-line"/>
+                        <!-- Question label - moved left to avoid RECAP overlap -->
+                        <text x="870" y="92" fill="#4f46e5" font-size="13" font-weight="500" opacity="0.8" class="wave-question">What do I want</text>
+                        <text x="870" y="108" fill="#4f46e5" font-size="13" font-weight="500" opacity="0.8" class="wave-question">to achieve?</text>
+                        <!-- Traveling dot -->
+                        <circle r="10" fill="#4f46e5" filter="url(#glow)" class="wave-dot wave-dot-weekly">
+                            <animateMotion dur="10s" repeatCount="indefinite" path="M 150 140 Q 250 140, 325 100 Q 425 50, 500 50 Q 575 50, 675 100 Q 750 140, 850 140"/>
+                        </circle>
+                    </g>
+
+                    <!-- Prep flow DOWN arrow (left edge) -->
+                    <g class="flow-arrow flow-down">
+                        <!-- Label box at top -->
+                        <g transform="translate(10, 100)">
+                            <rect x="-8" y="-40" width="16" height="80" rx="4" fill="#4f46e5" opacity="0.15"/>
+                            <text x="0" y="-22" text-anchor="middle" fill="#4f46e5" font-size="9" font-weight="700">P</text>
+                            <text x="0" y="-11" text-anchor="middle" fill="#4f46e5" font-size="9" font-weight="700">R</text>
+                            <text x="0" y="0" text-anchor="middle" fill="#4f46e5" font-size="9" font-weight="700">E</text>
+                            <text x="0" y="11" text-anchor="middle" fill="#4f46e5" font-size="9" font-weight="700">P</text>
+                            <text x="0" y="28" text-anchor="middle" fill="#4f46e5" font-size="11" font-weight="700">↓</text>
+                        </g>
+                        <!-- Flow line -->
+                        <line x1="10" y1="145" x2="10" y2="455" stroke="url(#flowDownGradient)" stroke-width="2" opacity="0.4"/>
+                        <!-- Arrow head at bottom -->
+                        <polygon points="10,462 4,450 16,450" fill="#a78bfa" opacity="0.9"/>
+                        <!-- Animated particles flowing down - continuous flow -->
+                        <circle r="5" fill="#4f46e5" opacity="0" filter="url(#glow)">
+                            <animate attributeName="cy" values="100;455" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="3s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite"/>
+                            <animate attributeName="fill" values="#4f46e5;#8b5cf6;#a78bfa" dur="3s" repeatCount="indefinite"/>
+                            <set attributeName="cx" to="10"/>
+                        </circle>
+                        <circle r="4" fill="#4f46e5" opacity="0" filter="url(#glow)">
+                            <animate attributeName="cy" values="100;455" dur="3s" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="3s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="fill" values="#4f46e5;#8b5cf6;#a78bfa" dur="3s" repeatCount="indefinite" begin="1s"/>
+                            <set attributeName="cx" to="10"/>
+                        </circle>
+                        <circle r="4" fill="#4f46e5" opacity="0" filter="url(#glow)">
+                            <animate attributeName="cy" values="100;455" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="3s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite" begin="2s"/>
+                            <animate attributeName="fill" values="#4f46e5;#8b5cf6;#a78bfa" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            <set attributeName="cx" to="10"/>
+                        </circle>
+                    </g>
+
+                    <!-- DAILY WAVE ROW -->
+                    <g class="wave-row wave-daily">
+                        <!-- Label -->
+                        <g class="wave-label">
+                            <rect x="20" y="232" width="100" height="56" rx="10" fill="#8b5cf6" opacity="0.1"/>
+                            <text x="70" y="256" text-anchor="middle" fill="#8b5cf6" font-size="16" font-weight="700">DAY</text>
+                            <text x="70" y="278" text-anchor="middle" fill="#8b5cf6" font-size="13" opacity="0.7">×5</text>
+                        </g>
+                        <!-- Wave line (5 cycles) -->
+                        <path d="M 150 260 Q 185 220, 220 260 Q 255 300, 290 260 Q 325 220, 360 260 Q 395 300, 430 260 Q 465 220, 500 260 Q 535 300, 570 260 Q 605 220, 640 260 Q 675 300, 710 260 Q 745 220, 780 260 Q 815 300, 850 260"
+                              fill="none" stroke="url(#dailyGradient)" stroke-width="4" stroke-linecap="round"
+                              class="wave-line wave-daily-line"/>
+                        <!-- Question label - moved left to avoid RECAP overlap -->
+                        <text x="870" y="252" fill="#8b5cf6" font-size="13" font-weight="500" opacity="0.8" class="wave-question">What must</text>
+                        <text x="870" y="268" fill="#8b5cf6" font-size="13" font-weight="500" opacity="0.8" class="wave-question">happen today?</text>
+                        <!-- Traveling dot -->
+                        <circle r="8" fill="#8b5cf6" filter="url(#glow)" class="wave-dot wave-dot-daily">
+                            <animateMotion dur="10s" repeatCount="indefinite" path="M 150 260 Q 185 220, 220 260 Q 255 300, 290 260 Q 325 220, 360 260 Q 395 300, 430 260 Q 465 220, 500 260 Q 535 300, 570 260 Q 605 220, 640 260 Q 675 300, 710 260 Q 745 220, 780 260 Q 815 300, 850 260"/>
+                        </circle>
+                    </g>
+
+                    <!-- MEETING WAVE ROW -->
+                    <g class="wave-row wave-meeting">
+                        <!-- Label -->
+                        <g class="wave-label">
+                            <rect x="20" y="392" width="100" height="56" rx="10" fill="#a78bfa" opacity="0.1"/>
+                            <text x="70" y="416" text-anchor="middle" fill="#a78bfa" font-size="16" font-weight="700">MEETING</text>
+                            <text x="70" y="438" text-anchor="middle" fill="#a78bfa" font-size="13" opacity="0.7">~25</text>
+                        </g>
+                        <!-- Wave line (~20 cycles) -->
+                        <path d="M 150 420 Q 162 405, 174 420 Q 186 435, 198 420 Q 210 405, 222 420 Q 234 435, 246 420 Q 258 405, 270 420 Q 282 435, 294 420 Q 306 405, 318 420 Q 330 435, 342 420 Q 354 405, 366 420 Q 378 435, 390 420 Q 402 405, 414 420 Q 426 435, 438 420 Q 450 405, 462 420 Q 474 435, 486 420 Q 498 405, 510 420 Q 522 435, 534 420 Q 546 405, 558 420 Q 570 435, 582 420 Q 594 405, 606 420 Q 618 435, 630 420 Q 642 405, 654 420 Q 666 435, 678 420 Q 690 405, 702 420 Q 714 435, 726 420 Q 738 405, 750 420 Q 762 435, 774 420 Q 786 405, 798 420 Q 810 435, 822 420 Q 834 405, 850 420"
+                              fill="none" stroke="url(#meetingGradient)" stroke-width="3" stroke-linecap="round"
+                              class="wave-line wave-meeting-line"/>
+                        <!-- Question label - moved left to avoid RECAP overlap -->
+                        <text x="870" y="412" fill="#a78bfa" font-size="13" font-weight="500" opacity="0.8" class="wave-question">What do I need</text>
+                        <text x="870" y="428" fill="#a78bfa" font-size="13" font-weight="500" opacity="0.8" class="wave-question">right now?</text>
+                        <!-- Traveling dots (multiple, faster) -->
+                        <circle r="6" fill="#c4b5fd" filter="url(#glow)" class="wave-dot wave-dot-meeting">
+                            <animateMotion dur="10s" repeatCount="indefinite" path="M 150 420 Q 162 405, 174 420 Q 186 435, 198 420 Q 210 405, 222 420 Q 234 435, 246 420 Q 258 405, 270 420 Q 282 435, 294 420 Q 306 405, 318 420 Q 330 435, 342 420 Q 354 405, 366 420 Q 378 435, 390 420 Q 402 405, 414 420 Q 426 435, 438 420 Q 450 405, 462 420 Q 474 435, 486 420 Q 498 405, 510 420 Q 522 435, 534 420 Q 546 405, 558 420 Q 570 435, 582 420 Q 594 405, 606 420 Q 618 435, 630 420 Q 642 405, 654 420 Q 666 435, 678 420 Q 690 405, 702 420 Q 714 435, 726 420 Q 738 405, 750 420 Q 762 435, 774 420 Q 786 405, 798 420 Q 810 435, 822 420 Q 834 405, 850 420"/>
+                        </circle>
+                        <circle r="5" fill="#ddd6fe" filter="url(#glow)" class="wave-dot wave-dot-meeting-2" opacity="0.8">
+                            <animateMotion dur="10s" repeatCount="indefinite" begin="-5s" path="M 150 420 Q 162 405, 174 420 Q 186 435, 198 420 Q 210 405, 222 420 Q 234 435, 246 420 Q 258 405, 270 420 Q 282 435, 294 420 Q 306 405, 318 420 Q 330 435, 342 420 Q 354 405, 366 420 Q 378 435, 390 420 Q 402 405, 414 420 Q 426 435, 438 420 Q 450 405, 462 420 Q 474 435, 486 420 Q 498 405, 510 420 Q 522 435, 534 420 Q 546 405, 558 420 Q 570 435, 582 420 Q 594 405, 606 420 Q 618 435, 630 420 Q 642 405, 654 420 Q 666 435, 678 420 Q 690 405, 702 420 Q 714 435, 726 420 Q 738 405, 750 420 Q 762 435, 774 420 Q 786 405, 798 420 Q 810 435, 822 420 Q 834 405, 850 420"/>
+                        </circle>
+                    </g>
+
+                    <!-- Consolidate flow UP arrow (right edge) -->
+                    <g class="flow-arrow flow-up">
+                        <!-- Arrow head at top -->
+                        <polygon points="990,55 984,67 996,67" fill="#4f46e5" opacity="0.9"/>
+                        <!-- Flow line -->
+                        <line x1="990" y1="67" x2="990" y2="380" stroke="url(#flowUpGradient)" stroke-width="2" opacity="0.4"/>
+                        <!-- Label box at bottom - vertical text "RECAP" with arrow up -->
+                        <g transform="translate(990, 420)">
+                            <rect x="-8" y="-40" width="16" height="80" rx="4" fill="#7c3aed" opacity="0.15"/>
+                            <text x="0" y="-22" text-anchor="middle" fill="#7c3aed" font-size="9" font-weight="700">R</text>
+                            <text x="0" y="-11" text-anchor="middle" fill="#7c3aed" font-size="9" font-weight="700">E</text>
+                            <text x="0" y="0" text-anchor="middle" fill="#7c3aed" font-size="9" font-weight="700">C</text>
+                            <text x="0" y="11" text-anchor="middle" fill="#7c3aed" font-size="9" font-weight="700">A</text>
+                            <text x="0" y="22" text-anchor="middle" fill="#7c3aed" font-size="9" font-weight="700">P</text>
+                            <text x="0" y="39" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="700">↑</text>
+                        </g>
+                        <!-- Animated particles flowing up - continuous flow -->
+                        <circle r="4" fill="#a78bfa" opacity="0" filter="url(#glow)">
+                            <animate attributeName="cy" values="380;67" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="3s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite"/>
+                            <animate attributeName="fill" values="#a78bfa;#8b5cf6;#4f46e5" dur="3s" repeatCount="indefinite"/>
+                            <set attributeName="cx" to="990"/>
+                        </circle>
+                        <circle r="4" fill="#a78bfa" opacity="0" filter="url(#glow)">
+                            <animate attributeName="cy" values="380;67" dur="3s" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="3s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="fill" values="#a78bfa;#8b5cf6;#4f46e5" dur="3s" repeatCount="indefinite" begin="1s"/>
+                            <set attributeName="cx" to="990"/>
+                        </circle>
+                        <circle r="5" fill="#a78bfa" opacity="0" filter="url(#glow)">
+                            <animate attributeName="cy" values="380;67" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="3s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite" begin="2s"/>
+                            <animate attributeName="fill" values="#a78bfa;#8b5cf6;#4f46e5" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            <set attributeName="cx" to="990"/>
+                        </circle>
+                    </g>
+
+                    <!-- Timeline bar at bottom -->
+                    <g class="timeline-bar">
+                        <line x1="150" y1="500" x2="850" y2="500" stroke="#e5e7eb" stroke-width="2"/>
+                        <!-- Day markers -->
+                        <g class="timeline-day" transform="translate(200, 500)">
+                            <circle cy="0" r="8" fill="#4f46e5"/>
+                            <text y="26" text-anchor="middle" fill="#4f46e5" font-size="14" font-weight="600">M</text>
+                            <text y="42" text-anchor="middle" fill="#4f46e5" font-size="11" opacity="0.7">Plan</text>
+                        </g>
+                        <g class="timeline-day" transform="translate(340, 500)">
+                            <circle cy="0" r="5" fill="#a78bfa" opacity="0.6"/>
+                            <text y="26" text-anchor="middle" fill="#6b7280" font-size="14">T</text>
+                        </g>
+                        <g class="timeline-day" transform="translate(500, 500)">
+                            <circle cy="0" r="5" fill="#a78bfa" opacity="0.6"/>
+                            <text y="26" text-anchor="middle" fill="#6b7280" font-size="14">W</text>
+                        </g>
+                        <g class="timeline-day" transform="translate(660, 500)">
+                            <circle cy="0" r="5" fill="#a78bfa" opacity="0.6"/>
+                            <text y="26" text-anchor="middle" fill="#6b7280" font-size="14">T</text>
+                        </g>
+                        <g class="timeline-day" transform="translate(800, 500)">
+                            <circle cy="0" r="8" fill="#7c3aed"/>
+                            <text y="26" text-anchor="middle" fill="#7c3aed" font-size="14" font-weight="600">F</text>
+                            <text y="42" text-anchor="middle" fill="#7c3aed" font-size="11" opacity="0.7">Review</text>
+                        </g>
+                    </g>
+
+                    <!-- Nesting annotation - below timeline -->
+                    <g class="nesting-annotation" transform="translate(500, 550)">
+                        <text text-anchor="middle" fill="#6b7280" font-size="12">
+                            <tspan fill="#4f46e5" font-weight="600">1 week</tspan>
+                            <tspan> = </tspan>
+                            <tspan fill="#8b5cf6" font-weight="600">5 days</tspan>
+                            <tspan> = </tspan>
+                            <tspan fill="#a78bfa" font-weight="600">~25 meetings</tspan>
+                        </text>
+                    </g>
+
+                    <!-- ========================================
+                         Interactive Annotations (hidden by default)
+                         ======================================== -->
+
+                    <!-- WEEKLY annotations: Monday Plan + Friday Review -->
+                    <!-- Wave: starts at (150,140), peaks at (500,50), ends at (850,140) -->
+                    <g class="layer-annotation annotation-weekly" opacity="0">
+                        <!-- Monday: Plan highlight - ON the wave line at x=200, y≈138 -->
+                        <g class="weekly-plan-marker" transform="translate(200, 138)">
+                            <circle r="16" fill="#4f46e5" opacity="0.2">
+                                <animate attributeName="r" values="16;24;16" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.2;0.1;0.2" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle r="8" fill="#4f46e5"/>
+                            <line x1="0" y1="16" x2="0" y2="352" stroke="#4f46e5" stroke-width="2" stroke-dasharray="6 4" opacity="0.4"/>
+                            <rect x="-50" y="22" width="100" height="32" rx="6" fill="#4f46e5"/>
+                            <text y="44" text-anchor="middle" fill="white" font-size="13" font-weight="600">MON: PLAN</text>
+                        </g>
+                        <!-- Mid-week peak indicator - ON the wave at peak (500, 50) -->
+                        <g class="weekly-peak-marker" transform="translate(500, 50)">
+                            <circle r="12" fill="#6366f1" opacity="0.3">
+                                <animate attributeName="r" values="12;20;12" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                            </circle>
+                            <circle r="6" fill="#6366f1"/>
+                        </g>
+                        <!-- Friday: Review highlight - ON the wave line at x=800, y≈138 -->
+                        <g class="weekly-review-marker" transform="translate(800, 138)">
+                            <circle r="16" fill="#7c3aed" opacity="0.2">
+                                <animate attributeName="r" values="16;24;16" dur="2s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="opacity" values="0.2;0.1;0.2" dur="2s" repeatCount="indefinite" begin="1s"/>
+                            </circle>
+                            <circle r="8" fill="#7c3aed"/>
+                            <line x1="0" y1="16" x2="0" y2="352" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6 4" opacity="0.4"/>
+                            <rect x="-55" y="22" width="110" height="32" rx="6" fill="#7c3aed"/>
+                            <text y="44" text-anchor="middle" fill="white" font-size="13" font-weight="600">FRI: REVIEW</text>
+                        </g>
+                    </g>
+
+                    <!-- DAILY annotations: AM intentions + PM closure -->
+                    <!-- Wave midline is y=260, markers positioned ON the wave line -->
+                    <g class="layer-annotation annotation-daily" opacity="0">
+                        <!-- Day 1 - AM at start, PM after peak -->
+                        <g class="daily-cycle" transform="translate(150, 260)">
+                            <circle r="12" fill="#8b5cf6" opacity="0.3">
+                                <animate attributeName="r" values="12;18;12" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle r="6" fill="#8b5cf6"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">AM</text>
+                        </g>
+                        <g class="daily-cycle" transform="translate(220, 260)">
+                            <circle r="12" fill="#a78bfa" opacity="0.3">
+                                <animate attributeName="r" values="12;18;12" dur="1.5s" repeatCount="indefinite" begin="0.75s"/>
+                            </circle>
+                            <circle r="6" fill="#a78bfa"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">PM</text>
+                        </g>
+                        <!-- Day 2 -->
+                        <g class="daily-cycle" transform="translate(290, 260)">
+                            <circle r="6" fill="#8b5cf6"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">AM</text>
+                        </g>
+                        <g class="daily-cycle" transform="translate(360, 260)">
+                            <circle r="6" fill="#a78bfa"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">PM</text>
+                        </g>
+                        <!-- Day 3 -->
+                        <g class="daily-cycle" transform="translate(430, 260)">
+                            <circle r="6" fill="#8b5cf6"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">AM</text>
+                        </g>
+                        <g class="daily-cycle" transform="translate(500, 260)">
+                            <circle r="6" fill="#a78bfa"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">PM</text>
+                        </g>
+                        <!-- Day 4 -->
+                        <g class="daily-cycle" transform="translate(570, 260)">
+                            <circle r="6" fill="#8b5cf6"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">AM</text>
+                        </g>
+                        <g class="daily-cycle" transform="translate(640, 260)">
+                            <circle r="6" fill="#a78bfa"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">PM</text>
+                        </g>
+                        <!-- Day 5 -->
+                        <g class="daily-cycle" transform="translate(710, 260)">
+                            <circle r="6" fill="#8b5cf6"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">AM</text>
+                        </g>
+                        <g class="daily-cycle" transform="translate(780, 260)">
+                            <circle r="6" fill="#a78bfa"/>
+                            <text x="0" y="-18" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">PM</text>
+                        </g>
+                        <!-- Legend -->
+                        <g transform="translate(500, 330)">
+                            <rect x="-130" y="-18" width="260" height="36" rx="6" fill="white" stroke="#8b5cf6" stroke-width="1"/>
+                            <circle cx="-100" cy="0" r="6" fill="#8b5cf6"/>
+                            <text x="-84" y="5" fill="#8b5cf6" font-size="13">Set intentions</text>
+                            <circle cx="35" cy="0" r="6" fill="#a78bfa"/>
+                            <text x="51" y="5" fill="#a78bfa" font-size="13">Close loops</text>
+                        </g>
+                    </g>
+
+                    <!-- MEETING annotations: Before/During/After -->
+                    <g class="layer-annotation annotation-meeting" opacity="0">
+                        <!-- Single meeting expanded view -->
+                        <g transform="translate(500, 420)">
+                            <!-- Meeting zoom box -->
+                            <rect x="-160" y="-65" width="320" height="130" rx="10" fill="white" stroke="#c4b5fd" stroke-width="2"/>
+                            <!-- Before -->
+                            <g transform="translate(-110, 0)">
+                                <circle r="14" fill="#4f46e5" opacity="0.2"/>
+                                <circle r="8" fill="#4f46e5"/>
+                                <text x="0" y="-28" text-anchor="middle" fill="#4f46e5" font-size="12" font-weight="600">BEFORE</text>
+                                <text x="0" y="32" text-anchor="middle" fill="#4f46e5" font-size="11">Review context</text>
+                                <text x="0" y="48" text-anchor="middle" fill="#4f46e5" font-size="11">Set intention</text>
+                            </g>
+                            <!-- Arrow -->
+                            <path d="M -70 0 L -30 0" stroke="#c4b5fd" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <!-- During -->
+                            <g transform="translate(0, 0)">
+                                <rect x="-35" y="-20" width="70" height="40" rx="6" fill="#a78bfa" opacity="0.3"/>
+                                <circle r="10" fill="#a78bfa">
+                                    <animate attributeName="r" values="10;14;10" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="0" y="-32" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">DURING</text>
+                                <text x="0" y="45" text-anchor="middle" fill="#a78bfa" font-size="11">Be present</text>
+                            </g>
+                            <!-- Arrow -->
+                            <path d="M 30 0 L 70 0" stroke="#c4b5fd" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <!-- After -->
+                            <g transform="translate(110, 0)">
+                                <circle r="14" fill="#7c3aed" opacity="0.2"/>
+                                <circle r="8" fill="#7c3aed"/>
+                                <text x="0" y="-28" text-anchor="middle" fill="#7c3aed" font-size="12" font-weight="600">AFTER</text>
+                                <text x="0" y="32" text-anchor="middle" fill="#7c3aed" font-size="11">Capture notes</text>
+                                <text x="0" y="48" text-anchor="middle" fill="#7c3aed" font-size="11">Log next steps</text>
+                            </g>
+                        </g>
+                        <!-- Connection lines to meeting wave -->
+                        <path d="M 340 355 Q 420 375, 500 355" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="5 3" fill="none"/>
+                        <path d="M 500 355 Q 580 375, 660 355" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="5 3" fill="none"/>
+                    </g>
+
+                    <!-- Arrowhead marker definition -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#c4b5fd"/>
+                        </marker>
+                    </defs>
+                </svg>
+
+                <!-- Rhythm Cards Below -->
+                <div class="cadence-cards">
+                    <div class="cadence-card cadence-card-featured" data-layer="weekly">
+                        <div class="cadence-card-indicator"></div>
+                        <div class="cadence-card-content">
+                            <svg class="card-wave" viewBox="0 0 100 20" preserveAspectRatio="none">
+                                <path d="M 0 10 Q 25 2, 50 10 Q 75 18, 100 10" fill="none" stroke="#4f46e5" stroke-width="2"/>
+                            </svg>
+                            <div class="cadence-time">1 per week</div>
+                            <h3 class="cadence-title">Week</h3>
+                            <p class="cadence-desc">Define wins. Review progress. Seed next week.</p>
+                            <div class="cadence-flow">
+                                <span class="flow-in">← insights</span>
+                                <span class="flow-out">intent →</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cadence-card" data-layer="daily">
+                        <div class="cadence-card-indicator"></div>
+                        <div class="cadence-card-content">
+                            <svg class="card-wave" viewBox="0 0 100 20" preserveAspectRatio="none">
+                                <path d="M 0 10 Q 12.5 2, 25 10 Q 37.5 18, 50 10 Q 62.5 2, 75 10 Q 87.5 18, 100 10" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+                            </svg>
+                            <div class="cadence-time">5 per week</div>
+                            <h3 class="cadence-title">Days</h3>
+                            <p class="cadence-desc">AM: set intentions. PM: close loops.</p>
+                            <div class="cadence-flow">
+                                <span class="flow-in">← priorities</span>
+                                <span class="flow-out">closure →</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cadence-card" data-layer="meeting">
+                        <div class="cadence-card-indicator"></div>
+                        <div class="cadence-card-content">
+                            <svg class="card-wave" viewBox="0 0 100 20" preserveAspectRatio="none">
+                                <path d="M 0 10 Q 5 5, 10 10 Q 15 15, 20 10 Q 25 5, 30 10 Q 35 15, 40 10 Q 45 5, 50 10 Q 55 15, 60 10 Q 65 5, 70 10 Q 75 15, 80 10 Q 85 5, 90 10 Q 95 15, 100 10" fill="none" stroke="#c4b5fd" stroke-width="2"/>
+                            </svg>
+                            <div class="cadence-time">~25 per week</div>
+                            <h3 class="cadence-title">Meetings</h3>
+                            <p class="cadence-desc">Be intentional. Capture decisions and next steps.</p>
+                            <div class="cadence-flow">
+                                <span class="flow-in">← prep flows in</span>
+                                <span class="flow-out">notes flow out →</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-cta">
+        <div class="container">
+            <h2 class="cta-title">Stop ending weeks wondering what moved</h2>
+            <p class="cta-subtitle">Join the waitlist for early access.</p>
+
+            <form id="waitlist-form-footer" class="waitlist-form waitlist-form-centered">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="you@company.com" required class="input-email">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Join Waitlist</span>
+                        <span class="btn-loading" hidden>
+                            <svg class="spinner" width="20" height="20"><use href="#icon-spinner"/></svg>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="logo" width="24" height="24"><use href="#icon-logo"/></svg>
+                    <span>Cadence OS</span>
+                </div>
+                <p class="footer-copy">&copy; 2025 Cadence OS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal" hidden>
+        <div class="modal-content">
+            <div class="modal-icon">
+                <svg width="48" height="48"><use href="#icon-check"/></svg>
+            </div>
+            <h3 class="modal-title">You're on the list!</h3>
+            <p class="modal-text">We'll reach out when early access opens.</p>
+            <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
