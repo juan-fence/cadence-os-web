@@ -9,7 +9,7 @@
 
 // Replace this with your Google Apps Script Web App URL
 // See SETUP.md for instructions on creating the Google Sheets integration
-const GOOGLE_SCRIPT_URL = '';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLG9aptCJuTIL_GeUC8uuNaD-qkQMwsBPDJRKzMUIabmuHFiyJChAiZum2Z28B9qYu/exec';
 
 // Animation timing constants (in milliseconds)
 const ANIMATION_TIMING = {
