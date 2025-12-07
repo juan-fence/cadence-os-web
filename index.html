@@ -197,18 +197,34 @@
             <h1 class="hero-title">A personal operating system for those who can't afford to improvise</h1>
             <p class="hero-subtitle">Turn meetings into clear priorities, prepared conversations, and closed loops—without relying on heroic discipline.</p>
 
-            <form id="waitlist-form-hero" class="waitlist-form">
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="you@company.com" required class="input-email">
-                    <button type="submit" class="btn btn-primary">
-                        <span class="btn-text">Join Waitlist</span>
-                        <span class="btn-loading" hidden>
-                            <svg class="spinner" width="20" height="20"><use href="#icon-spinner"/></svg>
-                        </span>
-                    </button>
+            <div class="hero-cta-wrapper">
+                <!-- Hosted option (default) -->
+                <div id="cta-hosted" class="hero-cta-option">
+                    <form id="waitlist-form-hero" class="waitlist-form">
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="you@company.com" required class="input-email">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-text">Join Waitlist</span>
+                                <span class="btn-loading" hidden>
+                                    <svg class="spinner" width="20" height="20"><use href="#icon-spinner"/></svg>
+                                </span>
+                            </button>
+                        </div>
+                        <p class="form-note">Early access for the hosted version. No spam.</p>
+                    </form>
+                    <button class="cta-toggle" onclick="toggleCTA('selfhost')">or self-host →</button>
                 </div>
-                <p class="form-note">Early access for founders and executives. No spam.</p>
-            </form>
+
+                <!-- Self-host option (hidden) -->
+                <div id="cta-selfhost" class="hero-cta-option" hidden>
+                    <a href="https://github.com/juan-fence/cadence-os" target="_blank" class="btn btn-primary btn-github">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        View on GitHub
+                    </a>
+                    <p class="form-note">Open source. Run it locally or on your own server.</p>
+                    <button class="cta-toggle" onclick="toggleCTA('hosted')">or join the waitlist →</button>
+                </div>
+            </div>
         </div>
 
     </header>
@@ -217,7 +233,7 @@
     <section class="section section-problem">
         <div class="container">
             <blockquote class="problem-quote">
-                "I was busy all week… but what actually moved?"
+                "I've been in meetings all week... but what actually moved?"
             </blockquote>
             <p class="problem-text">
                 Executives don't struggle because they lack tools. They struggle because meetings are ephemeral, decisions leak, follow-ups slip, and weeks blur together. The cost isn't time—it's <strong>decision quality</strong>, <strong>relationship depth</strong>, and <strong>strategic momentum</strong>.
@@ -315,7 +331,7 @@
     <!-- Who It's For Section -->
     <section class="section section-audience">
         <div class="container">
-            <h2 class="section-title">Built for leaders with meeting-heavy calendars</h2>
+            <h2 class="section-title">Built for people with meeting-heavy calendars</h2>
 
             <div class="audience-content">
                 <div class="audience-list">

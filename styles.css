@@ -189,6 +189,46 @@ strong {
     color: #94a3b8;
 }
 
+.hero-cta-wrapper {
+    width: 100%;
+    max-width: 440px;
+}
+
+.hero-cta-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-cta-option[hidden] {
+    display: none;
+}
+
+.cta-toggle {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
+    transition: color 0.2s ease;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.cta-toggle:hover {
+    color: #f8fafc;
+}
+
+.btn-github {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-xl);
+    font-size: 1rem;
+}
+
 /* Forms */
 .waitlist-form {
     width: 100%;

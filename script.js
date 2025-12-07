@@ -22,6 +22,23 @@ const ANIMATION_TIMING = {
 };
 
 // ============================================
+// CTA Toggle (Hosted vs Self-Host)
+// ============================================
+
+function toggleCTA(option) {
+    const hosted = document.getElementById('cta-hosted');
+    const selfhost = document.getElementById('cta-selfhost');
+
+    if (option === 'selfhost') {
+        hosted.hidden = true;
+        selfhost.hidden = false;
+    } else {
+        hosted.hidden = false;
+        selfhost.hidden = true;
+    }
+}
+
+// ============================================
 // DOM Elements
 // ============================================
 
@@ -181,7 +198,7 @@ function initCadenceIntro() {
     skipBtn.addEventListener('click', () => transitionToMain());
     intro.appendChild(skipBtn);
 
-    // Observer to start animation when in view
+    // Observer to start animation when mostly visible
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !hasStarted) {
@@ -190,11 +207,24 @@ function initCadenceIntro() {
                 observer.disconnect();
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.5 });
 
     observer.observe(visualization);
 
+    function lockScroll() {
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function unlockScroll() {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+    }
+
     function startIntroAnimation() {
+        // Lock scroll during intro
+        lockScroll();
+
         // Unpause all animations
         intro.style.animationPlayState = 'running';
         intro.querySelectorAll('*').forEach(el => {
@@ -207,6 +237,9 @@ function initCadenceIntro() {
 
     function transitionToMain() {
         if (transitionTimeout) clearTimeout(transitionTimeout);
+
+        // Unlock scroll
+        unlockScroll();
 
         // Zoom into the week (intro scales up and fades)
         intro.classList.add('fade-out');
