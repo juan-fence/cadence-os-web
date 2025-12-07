@@ -44,6 +44,7 @@ function toggleCTA(option) {
 
 const forms = document.querySelectorAll('.waitlist-form');
 const modal = document.getElementById('success-modal');
+const pageLoadTime = Date.now();
 
 // ============================================
 // Form Handling
@@ -99,6 +100,7 @@ async function handleSubmit(e) {
 }
 
 async function submitToGoogleSheets(email) {
+    const timeOnPage = Math.round((Date.now() - pageLoadTime) / 1000); // seconds
     const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors', // Required for Google Apps Script
@@ -108,7 +110,8 @@ async function submitToGoogleSheets(email) {
         body: JSON.stringify({
             email: email,
             timestamp: new Date().toISOString(),
-            source: window.location.href
+            source: window.location.href,
+            timeOnPage: timeOnPage
         })
     });
 
