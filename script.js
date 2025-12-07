@@ -13,7 +13,6 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLG9aptCJuTI
 
 // Animation timing constants (in milliseconds)
 const ANIMATION_TIMING = {
-    DEMO_SUBMIT_DELAY: 1000,
     MODAL_HIDE_DELAY: 300,
     SHAKE_DURATION: 500,
     INTRO_DURATION: 4500,
@@ -59,9 +58,6 @@ async function handleSubmit(e) {
 
     const form = e.target;
     const email = form.querySelector('input[name="email"]').value;
-    const button = form.querySelector('button[type="submit"]');
-    const btnText = button.querySelector('.btn-text');
-    const btnLoading = button.querySelector('.btn-loading');
 
     // Validate email
     if (!isValidEmail(email)) {
@@ -69,34 +65,13 @@ async function handleSubmit(e) {
         return;
     }
 
-    // Show loading state
-    btnText.hidden = true;
-    btnLoading.hidden = false;
-    button.disabled = true;
-
-    try {
-        // Check if Google Script URL is configured
-        if (!GOOGLE_SCRIPT_URL) {
-            // Demo mode - just show success
-            console.log('Waitlist signup (demo mode):', email);
-            await simulateDelay(ANIMATION_TIMING.DEMO_SUBMIT_DELAY);
-            showSuccessModal();
-            form.reset();
-        } else {
-            // Send to Google Sheets
-            await submitToGoogleSheets(email);
-            showSuccessModal();
-            form.reset();
-        }
-    } catch (error) {
-        console.error('Submission error:', error);
-        alert('Something went wrong. Please try again.');
-    } finally {
-        // Reset button state
-        btnText.hidden = false;
-        btnLoading.hidden = true;
-        button.disabled = false;
+    // Send to Google Sheets (no-cors mode returns immediately)
+    if (GOOGLE_SCRIPT_URL) {
+        submitToGoogleSheets(email);
     }
+
+    showSuccessModal();
+    form.reset();
 }
 
 async function submitToGoogleSheets(email) {
@@ -153,10 +128,6 @@ function closeModal() {
     setTimeout(() => {
         modal.hidden = true;
     }, ANIMATION_TIMING.MODAL_HIDE_DELAY);
-}
-
-function simulateDelay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Close modal on backdrop click
