@@ -1427,7 +1427,7 @@ strong {
 
 @media (max-width: 480px) {
     .logo-full {
-        width: 120px;
+        width: 150px;
         height: auto;
     }
 }
