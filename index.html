@@ -24,8 +24,12 @@
     <!-- SVG Symbol Definitions (hidden, reusable icons) -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="icon-logo" viewBox="0 0 32 32">
-            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" fill="none"/>
-            <path d="M16 8V16L22 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- Wave-based C with center pulse (bold) -->
+            <path d="M26 6 C18 3, 6 10, 6 16 C6 22, 18 29, 26 26"
+                  stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <path d="M23 9 C17 7, 10 12, 10 16 C10 20, 17 25, 23 23"
+                  stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+            <circle cx="16" cy="16" r="3" fill="currentColor"/>
         </symbol>
         <symbol id="icon-spinner" viewBox="0 0 20 20">
             <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="40" stroke-dashoffset="10"/>
@@ -170,8 +174,22 @@
 
         <nav class="nav">
             <div class="nav-brand">
-                <svg class="logo" width="32" height="32"><use href="#icon-logo"/></svg>
-                <span class="nav-brand-text">Cadence OS</span>
+                <svg class="logo-full" width="200" height="48" viewBox="0 0 200 48" fill="none">
+                    <defs>
+                        <linearGradient id="navLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#60a5fa"/>
+                            <stop offset="100%" stop-color="#38bdf8"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(2, 4)">
+                        <path d="M32 8 C22 5, 8 12, 8 20 C8 28, 22 35, 32 32" stroke="url(#navLogoGradient)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                        <path d="M28 12 C20 10, 13 15, 13 20 C13 25, 20 30, 28 28" stroke="url(#navLogoGradient)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+                        <circle cx="20" cy="20" r="3" fill="url(#navLogoGradient)"/>
+                    </g>
+                    <text x="52" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" fill="#f8fafc">
+                        <tspan>Cadence</tspan><tspan fill="#94a3b8" font-weight="500"> OS</tspan>
+                    </text>
+                </svg>
             </div>
         </nav>
 
@@ -912,8 +930,22 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <svg class="logo" width="24" height="24"><use href="#icon-logo"/></svg>
-                    <span>Cadence OS</span>
+                    <svg class="logo-full" width="180" height="44" viewBox="0 0 200 48" fill="none">
+                        <defs>
+                            <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#60a5fa"/>
+                                <stop offset="100%" stop-color="#38bdf8"/>
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(2, 4)">
+                            <path d="M32 8 C22 5, 8 12, 8 20 C8 28, 22 35, 32 32" stroke="url(#footerLogoGradient)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                            <path d="M28 12 C20 10, 13 15, 13 20 C13 25, 20 30, 28 28" stroke="url(#footerLogoGradient)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+                            <circle cx="20" cy="20" r="3" fill="url(#footerLogoGradient)"/>
+                        </g>
+                        <text x="52" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" fill="#f8fafc">
+                            <tspan>Cadence</tspan><tspan fill="#64748b" font-weight="500"> OS</tspan>
+                        </text>
+                    </svg>
                 </div>
                 <p class="footer-copy">&copy; 2025 Cadence OS. All rights reserved.</p>
             </div>

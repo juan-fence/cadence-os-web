@@ -111,14 +111,10 @@ strong {
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 1.125rem;
 }
 
-.logo {
-    color: var(--accent);
+.logo-full {
+    display: block;
 }
 
 /* Hero Section - Dark theme with animated background */
@@ -1310,13 +1306,6 @@ strong {
 .footer-brand {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    color: white;
-    font-weight: 500;
-}
-
-.footer-brand .logo {
-    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-copy {
@@ -1411,7 +1400,8 @@ strong {
 }
 
 @media (max-width: 480px) {
-    .nav-brand-text {
-        display: none;
+    .logo-full {
+        width: 120px;
+        height: auto;
     }
 }
